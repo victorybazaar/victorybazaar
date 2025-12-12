@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="India's First AI Conversational E-Commerce Platform - Victory Bazaar">
+    <meta name="keywords" content="AI E-Commerce, Victory Bazaar, Smart Shopping, AI Assistant">
+    <title>Victory Bazaar - India's First AI Conversational E-Commerce</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Landing Page CSS -->
+    <link rel="stylesheet" href="landing.css">
+    
+    <!-- Connect to main site CSS for consistency -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ====== NAVIGATION BAR ====== -->
+    <nav class="landing-nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <img src="logo.png" alt="Victory Bazaar">
+                <span class="logo-text">Victory Bazaar</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <a href="landing.html#home" class="nav-link active">Home</a>
+                <a href="landing.html#about" class="nav-link">About</a>
+                <a href="landing.html#team" class="nav-link">Our Team</a>
+                <a href="landing.html#features" class="nav-link">Features</a>
+                <a href="index.html" class="nav-link">Main Store</a>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="nav-actions">
+                <a href="index.html#signupPopup" class="btn-nav secondary">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+                <a href="index.html" class="btn-nav primary">
+                    <i class="fas fa-shopping-cart"></i> Shop Now
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ====== HERO SECTION WITH VIDEO ====== -->
+    <section class="hero-section" id="home">
+        <!-- Video Background -->
+        <div class="video-container">
+            <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
+                <source src="assets/hero-video.mp4" type="video/mp4">
+                <source src="assets/hero-video.webm" type="video/webm">
+                <!-- Fallback image if video doesn't load -->
+                <img src="assets/hero-fallback.jpg" alt="Victory Bazaar Hero">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🚀 Innovating E-Commerce</span>
+            </div>
+            
+            <h1 class="hero-title">
+                India's First <span class="highlight">AI Conversational</span> E-Commerce
+            </h1>
+            
+            <p class="hero-subtitle">
+                Experience shopping redefined with intelligent AI assistance, personalized recommendations, 
+                and seamless conversations that understand what you really need.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="hero-buttons">
+                <a href="index.html" class="btn-hero primary" id="startShoppingBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Start Shopping</span>
+                    <div class="btn-glow"></div>
+                </a>
+                
+                <a href="index.html#supplierOverlay" class="btn-hero secondary" id="businessAccountBtn">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Account for Business</span>
+                </a>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>AI-Powered</h3>
+                        <p>Intelligent Shopping Assistant</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>25,000+</h3>
+                        <p>Premium Products</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>50+</h3>
+                        <p>Countries Served</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <p>Scroll to explore</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT VICTORY BAZAAR ====== -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionizing Online Shopping</h2>
+                <p class="section-subtitle">
+                    Victory Bazaar isn't just another e-commerce platform. We're building the future of 
+                    online shopping with AI that understands, learns, and assists in real-time.
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Conversational AI</h3>
+                    <p>Chat naturally with our AI assistant to find products, compare prices, and get personalized recommendations.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-First</h3>
+                    <p>Designed for the mobile generation with seamless shopping experience on any device.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized for speed with instant search results and quick checkout process.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Safe</h3>
+                    <p>Bank-level security with encrypted transactions and data protection.</p>
+                </div>
+            </div>
+            
+            <!-- AI Features Showcase -->
+            <div class="ai-showcase">
+                <div class="ai-content">
+                    <h2>Meet Your AI Shopping Assistant</h2>
+                    <p>
+                        Our intelligent AI understands natural language, remembers your preferences, 
+                        and helps you make better shopping decisions. Try asking:
+                    </p>
+                    <ul class="ai-examples">
+                        <li><i class="fas fa-check"></i> "Find wireless headphones under ₹2000"</li>
+                        <li><i class="fas fa-check"></i> "Compare iPhone and Samsung phones"</li>
+                        <li><i class="fas fa-check"></i> "Show me trending fashion for winter"</li>
+                    </ul>
+                    <a href="index.html#aiChatOverlay" class="btn-ai-try">
+                        <i class="fas fa-robot"></i> Try AI Assistant Now
+                    </a>
+                </div>
+                <div class="ai-visual">
+                    <div class="ai-chat-preview">
+                        <!-- AI Chat Preview -->
+                        <div class="chat-message ai">
+                            <div class="avatar">AI</div>
+                            <div class="message">Hi! I can help you find products. What are you looking for?</div>
+                        </div>
+                        <div class="chat-message user">
+                            <div class="avatar">U</div>
+                            <div class="message">Show me gaming laptops under ₹60,000</div>
+                        </div>
+                        <div class="chat-message ai">
+                            <div class="avatar">AI</div>
+                            <div class="message">Found 12 gaming laptops! Here are the top 3 with best ratings...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== MEET OUR TEAM SECTION ====== -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Young Visionaries 🚀</h2>
+                <p class="section-subtitle">
+                    A team of passionate students building India's smartest e-commerce platform. 
+                    Average age: <strong>16 years</strong> • Mission: <strong>Revolutionize shopping for youth</strong>
+                </p>
+            </div>
+            
+            <!-- CEO & Founder -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="Ceo.png" alt="Mohd Shanawar Abbas - CEO & Founder" class="member-img">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="member-info">
+                    <div class="member-badge ceo">CEO & Founder</div>
+                    <h3>Mohd Shanawar Abbas</h3>
+                    <div class="member-meta">
+                        <span class="age"><i class="fas fa-birthday-cake"></i> Age 17</span>
+                        <span class="class"><i class="fas fa-graduation-cap"></i> Class 11th</span>
+                    </div>
+                    <p class="member-bio">
+                        Started Victory Bazaar single-handedly at the end of Class 11th with a vision to 
+                        revolutionize online shopping for the youth. Built this AI-powered platform from 
+                        scratch, combining cutting-edge technology with deep understanding of what young 
+                        shoppers really want.
+                    </p>
+                    <div class="member-story">
+                        <strong>💡 The Beginning:</strong> Started alone in his bedroom, friends joined when they saw the potential!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTO -->
+            <div class="team-member reverse">
+                <div class="member-photo">
+                    <img src="cto.png" alt="Mukesh Pandey - Chief Technology Officer" class="member-img">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="member-info">
+                    <div class="member-badge cto">Chief Technology Officer</div>
+                    <h3>Mukesh Pandey</h3>
+                    <div class="member-meta">
+                        <span class="age"><i class="fas fa-birthday-cake"></i> Age 25-28</span>
+                        <span class="class"><i class="fas fa-graduation-cap"></i> professional developer</span>
+                    </div>
+                    <p class="member-bio">
+                        The tech genius behind our AI systems. Shared the founder's vision and used his 
+                        exceptional programming skills to build the complex AI algorithms that power our 
+                        conversational shopping assistant. His dedication to learning advanced technologies 
+                        made our AI dreams a reality.
+                    </p>
+                    <div class="member-story">
+                        <strong>🚀 Joined:</strong> When he saw the AI vision, he immediately offered to help build it!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COO -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="coo.png" alt="Avika Srivastava - Chief Operations Officer" class="member-img">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="member-info">
+                    <div class="member-badge coo">Chief Operations Officer</div>
+                    <h3>Avika Srivastava</h3>
+                    <div class="member-meta">
+                        <span class="age"><i class="fas fa-birthday-cake"></i> Age 15</span>
+                        <span class="class"><i class="fas fa-graduation-cap"></i> Class 8th</span>
+                    </div>
+                    <p class="member-bio">
+                        The organizational backbone of Victory Bazaar. Our long-time friend who showed 
+                        exceptional talent in managing operations and processes. She helped structure our 
+                        workflows, manage communications, and ensure everything runs smoothly behind the scenes.
+                    </p>
+                    <div class="member-story">
+                        <strong>🤝 Joined:</strong> Old friend who believed in the idea and helped with operations from day one!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Co-Founder -->
+            <div class="team-member reverse">
+                <div class="member-photo">
+                    <img src="co-founder.png" alt="Co-Founder" class="member-img">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="member-info">
+                    <div class="member-badge cofounder">Co-Founder</div>
+                    <h3>raza</h3>
+                    <div class="member-meta">
+                        <span class="age"><i class="fas fa-birthday-cake"></i> Age 17</span>
+                        <span class="class"><i class="fas fa-graduation-cap"></i> Class 11th</span>
+                    </div>
+                    <p class="member-bio">
+                        Joined when the founder was working alone, providing crucial early support. 
+                        Helped with client communications, market research, and strategic planning. 
+                        His business acumen helped shape our go-to-market strategy and customer approach.
+                    </p>
+                    <div class="member-story">
+                        <strong>🌟 Joined:</strong> Early believer who helped transform the idea into a viable business!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Market Manager -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="manager.png" alt="Market Manager" class="member-img">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="member-info">
+                    <div class="member-badge manager">Market Manager</div>
+                    <h3>krishna Singh</h3>
+                    <div class="member-meta">
+                        <span class="age"><i class="fas fa-birthday-cake"></i> Age 15</span>
+                        <span class="class"><i class="fas fa-graduation-cap"></i> Class 9th</span>
+                    </div>
+                    <p class="member-bio">
+                        Our marketing prodigy who understands youth trends better than anyone. Manages our 
+                        social media presence, creates engaging content, and runs targeted ad campaigns. 
+                        His understanding of digital marketing at such a young age is extraordinary.
+                    </p>
+                    <div class="member-story">
+                        <strong>📱 Joined:</strong> When he heard about the project, he immediately offered to handle all marketing!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Stats -->
+            <div class="team-stats">
+                <div class="team-stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Young Leaders</div>
+                </div>
+                <div class="team-stat">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">Average Age</div>
+                </div>
+                <div class="team-stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Passion Driven</div>
+                </div>
+                <div class="team-stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Dedication</div>
+                </div>
+            </div>
+            
+            <!-- Team Mission -->
+            <div class="team-mission">
+                <h3>Our Mission</h3>
+                <p>
+                    To prove that age is just a number when you have passion, innovation, and determination. 
+                    We're building not just an e-commerce platform, but a movement that inspires other 
+                    young people to turn their ideas into reality.
+                </p>
+                <a href="index.html#supplierOverlay" class="btn-join-us">
+                    <i class="fas fa-handshake"></i> Join Our Business Network
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FEATURES SHOWCASE ====== -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Victory Bazaar? ✨</h2>
+                <p class="section-subtitle">We're not just selling products, we're creating experiences</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>AI Lens Scan</h3>
+                    <p>Point your camera at any product and find it instantly in our store</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>24/7 AI Assistant</h3>
+                    <p>Get instant help with product selection, comparisons, and recommendations</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Automatic Gifts</h3>
+                    <p>Earn free gifts automatically on every $100+ purchase</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Victory Rewards</h3>
+                    <p>Earn points on every purchase and redeem for discounts</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Seller Network</h3>
+                    <p>Start your own business with our 6-months free seller program</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App-Like Experience</h3>
+                    <p>Enjoy smooth, app-like shopping on any device</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CALL TO ACTION ====== -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience the Future of Shopping?</h2>
+                <p>Join thousands of smart shoppers who've already discovered AI-powered shopping</p>
+                
+                <div class="cta-buttons">
+                    <a href="index.html" class="btn-cta primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Start Shopping Now
+                    </a>
+                    
+                    <a href="index.html#signupPopup" class="btn-cta secondary">
+                        <i class="fas fa-user-plus"></i>
+                        Create Free Account
+                    </a>
+                </div>
+                
+                <div class="trust-signals">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Shopping</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping*</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-undo"></i>
+                        <span>Easy Returns</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="landing-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Info -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Victory Bazaar">
+                        <span>Victory Bazaar</span>
+                    </div>
+                    <p class="footer-tagline">
+                        India's First AI Conversational E-Commerce Platform
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/victorybazaarshopping" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="landing.html#home">Home</a>
+                    <a href="landing.html#about">About Us</a>
+                    <a href="landing.html#team">Our Team</a>
+                    <a href="landing.html#features">Features</a>
+                    <a href="index.html">Main Store</a>
+                </div>
+                
+                <!-- Legal -->
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Seller Agreement</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>victorybazaarshoppingplatform@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9682-203-648</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Made in India with ❤️</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Victory Bazaar. All rights reserved.</p>
+                <p>Built by young innovators • Average team age: 16 years</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== MOBILE MENU OVERLAY ====== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+            <button class="close-mobile-menu" id="closeMobileMenu">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="mobile-nav-links">
+                <a href="landing.html#home" class="mobile-nav-link">Home</a>
+                <a href="landing.html#about" class="mobile-nav-link">About</a>
+                <a href="landing.html#team" class="mobile-nav-link">Our Team</a>
+                <a href="landing.html#features" class="mobile-nav-link">Features</a>
+                <a href="index.html" class="mobile-nav-link">Main Store</a>
+            </div>
+            
+            <div class="mobile-actions">
+                <a href="index.html#signupPopup" class="btn-mobile secondary">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+                <a href="index.html" class="btn-mobile primary">
+                    <i class="fas fa-shopping-cart"></i> Shop Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script src="landing.js"></script>
+</body>
+</html>

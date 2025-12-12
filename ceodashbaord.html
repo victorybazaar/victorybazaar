@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory Bazaar - CEO Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ceodashboard.css">
+</head>
+<body>
+    <!-- === MAIN CEO DASHBOARD === -->
+    <div class="ceo-dashboard" id="ceoDashboard">
+        
+        <!-- === PASSKEY LOGIN OVERLAY === -->
+        <div class="passkey-overlay" id="passkeyOverlay">
+            <div class="passkey-container">
+                <div class="passkey-header">
+                    <img src="logo.png" alt="Victory Bazaar" class="passkey-logo">
+                    <h2>CEO Dashboard Access</h2>
+                    <p class="subtitle">Secure Passkey Required</p>
+                </div>
+                
+                <div class="passkey-form">
+                    <div class="form-group">
+                        <label for="ceoPasskey"><i class="fas fa-key"></i> Enter CEO Passkey</label>
+                        <input type="password" id="ceoPasskey" placeholder="Enter your secure passkey">
+                        <div class="passkey-hint">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Max 2 devices allowed simultaneously</span>
+                        </div>
+                    </div>
+                    
+                    <div class="device-check">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="rememberDevice">
+                            <span class="checkmark"></span>
+                            <span>Remember this device</span>
+                        </label>
+                        <p class="device-count">Devices active: <span id="activeDevices">0/2</span></p>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="loginToCeoDashboard">
+                        <i class="fas fa-lock"></i>
+                        Access CEO Dashboard
+                    </button>
+                    
+                    <div class="security-alert">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Unauthorized access is strictly prohibited</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === CEO MAIN HEADER === -->
+        <header class="ceo-header">
+            <div class="header-left">
+                <div class="ceo-profile">
+                    <img src="ceo.png" alt="CEO" class="ceo-photo">
+                    <div class="ceo-info">
+                        <h2>Victory Bazaar CEO Dashboard</h2>
+                        <p class="ceo-name">Welcome, <span id="ceoName">Chief Executive Officer</span></p>
+                        <p class="ceo-status"><i class="fas fa-circle online"></i> Online</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="header-actions">
+                    <button class="header-btn" id="ceoNotificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">12</span>
+                    </button>
+                    <button class="header-btn" id="ceoSettingsBtn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="header-btn" id="ceoLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+                
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Live Revenue</span>
+                        <span class="stat-value" id="liveRevenue">₹1.2Cr</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Online Users</span>
+                        <span class="stat-value" id="onlineUsers">4,582</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- === MAIN DASHBOARD GRID === -->
+        <div class="dashboard-grid">
+            
+            <!-- === ANALYTICS SECTION === -->
+            <div class="dashboard-section analytics-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-line"></i> Live Analytics</h3>
+                    <div class="section-actions">
+                        <button class="btn-sm" id="refreshAnalytics"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <!-- Website Performance -->
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-globe"></i> Website Performance</h4>
+                            <span class="card-badge success">Live</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Total Visitors</span>
+                                    <span class="metric-value" id="totalVisitors">12,458</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Active Now</span>
+                                    <span class="metric-value" id="activeVisitors">892</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="visitorsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Map -->
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-map-marked-alt"></i> Traffic Sources (World)</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="worldMap" class="map-container"></div>
+                            <div class="traffic-stats">
+                                <div class="traffic-item">
+                                    <span class="country">India</span>
+                                    <span class="percentage">45%</span>
+                                </div>
+                                <div class="traffic-item">
+                                    <span class="country">USA</span>
+                                    <span class="percentage">25%</span>
+                                </div>
+                                <div class="traffic-item">
+                                    <span class="country">UK</span>
+                                    <span class="percentage">15%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sales Graph -->
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-shopping-cart"></i> Sales Analytics</h4>
+                            <span class="card-badge">Today</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Total Sales</span>
+                                    <span class="metric-value" id="totalSales">₹24.8L</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Orders</span>
+                                    <span class="metric-value" id="totalOrders">1,248</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Graph -->
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-money-bill-wave"></i> Company Revenue</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Revenue</span>
+                                    <span class="metric-value" id="companyRevenue">₹8.9Cr</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Profit</span>
+                                    <span class="metric-value" id="companyProfit">₹1.8Cr</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === MESSAGING OVERLAYS SECTION === -->
+            <div class="dashboard-section messaging-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-comments"></i> Messaging System</h3>
+                    <div class="section-actions">
+                        <button class="btn-sm" id="newMessageBtn"><i class="fas fa-plus"></i> New</button>
+                    </div>
+                </div>
+                
+                <div class="messaging-grid">
+                    <!-- Message 1: Internal Team Chat -->
+                    <div class="message-card" id="teamChatCard">
+                        <div class="card-header">
+                            <h4><i class="fas fa-users"></i> Internal Team Chat</h4>
+                            <span class="card-badge">Live</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="chat-preview">
+                                <div class="chat-item unread">
+                                    <div class="chat-avatar">CT</div>
+                                    <div class="chat-content">
+                                        <span class="chat-name">CTO Team</span>
+                                        <span class="chat-message">Website update deployed successfully</span>
+                                    </div>
+                                    <span class="chat-time">2m ago</span>
+                                </div>
+                                <div class="chat-item">
+                                    <div class="chat-avatar">MM</div>
+                                    <div class="chat-content">
+                                        <span class="chat-name">Marketing Manager</span>
+                                        <span class="chat-message">New campaign performance report ready</span>
+                                    </div>
+                                    <span class="chat-time">15m ago</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="teamChatOverlay">
+                                <i class="fas fa-comments"></i> Open Team Chat
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Message 2: Broadcast Messaging -->
+                    <div class="message-card" id="broadcastCard">
+                        <div class="card-header">
+                            <h4><i class="fas fa-bullhorn"></i> Broadcast Messages</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="broadcast-stats">
+                                <div class="stat">
+                                    <span>All Sellers</span>
+                                    <span class="count">2,548</span>
+                                </div>
+                                <div class="stat">
+                                    <span>All Staff</span>
+                                    <span class="count">245</span>
+                                </div>
+                            </div>
+                            <div class="broadcast-form">
+                                <textarea placeholder="Type broadcast message..."></textarea>
+                                <div class="broadcast-options">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                        <span>All Sellers</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                        <span>All Staff</span>
+                                    </label>
+                                </div>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Send Broadcast
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message 3: Seller/Staff Communication -->
+                    <div class="message-card" id="sellerChatCard">
+                        <div class="card-header">
+                            <h4><i class="fas fa-handshake"></i> Seller & Staff Communication</h4>
+                            <span class="card-badge">12 Unread</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="chat-preview">
+                                <div class="chat-item unread">
+                                    <div class="chat-avatar">S1</div>
+                                    <div class="chat-content">
+                                        <span class="chat-name">Seller: Raj Electronics</span>
+                                        <span class="chat-message">Need help with inventory update</span>
+                                    </div>
+                                    <span class="chat-time">5m ago</span>
+                                </div>
+                                <div class="chat-item unread">
+                                    <div class="chat-avatar">ST</div>
+                                    <div class="chat-content">
+                                        <span class="chat-name">Staff: Support Team</span>
+                                        <span class="chat-message">3 pending support tickets</span>
+                                    </div>
+                                    <span class="chat-time">30m ago</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="sellerChatOverlay">
+                                <i class="fas fa-inbox"></i> Open Communication Hub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === SELLER MANAGEMENT SECTION === -->
+            <div class="dashboard-section seller-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-store"></i> Seller Management</h3>
+                    <div class="section-actions">
+                        <button class="btn-sm" id="viewAllSellers">View All</button>
+                    </div>
+                </div>
+                
+                <div class="seller-grid">
+                    <!-- New Applications -->
+                    <div class="seller-card applications-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-file-alt"></i> New Seller Applications</h4>
+                            <span class="card-badge danger" id="newApplicationsCount">24</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="applications-list">
+                                <div class="application-item">
+                                    <div class="app-info">
+                                        <span class="app-name">Fashion Hub India</span>
+                                        <span class="app-date">Today, 10:30 AM</span>
+                                    </div>
+                                    <div class="app-actions">
+                                        <button class="btn-xs approve-btn"><i class="fas fa-check"></i></button>
+                                        <button class="btn-xs reject-btn"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="application-item">
+                                    <div class="app-info">
+                                        <span class="app-name">Electro World</span>
+                                        <span class="app-date">Today, 9:15 AM</span>
+                                    </div>
+                                    <div class="app-actions">
+                                        <button class="btn-xs approve-btn"><i class="fas fa-check"></i></button>
+                                        <button class="btn-xs reject-btn"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="sellerApplicationsOverlay">
+                                <i class="fas fa-list"></i> View All Applications
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Active Sellers -->
+                    <div class="seller-card active-sellers-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-chart-bar"></i> Seller Performance</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="seller-performance">
+                                <div class="performance-item">
+                                    <span class="seller-name">Raj Electronics</span>
+                                    <div class="performance-stats">
+                                        <span class="stat">Sales: ₹12.4L</span>
+                                        <span class="stat">Commission: ₹62K</span>
+                                    </div>
+                                    <button class="btn-xs view-dashboard-btn" data-seller-id="RE001">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="performance-item">
+                                    <span class="seller-name">Fashion Trends</span>
+                                    <div class="performance-stats">
+                                        <span class="stat">Sales: ₹8.7L</span>
+                                        <span class="stat">Commission: ₹43.5K</span>
+                                    </div>
+                                    <button class="btn-xs view-dashboard-btn" data-seller-id="FT002">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="sellerDetailsOverlay">
+                                <i class="fas fa-chart-pie"></i> View Performance Reports
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === PRODUCT MANAGEMENT SECTION === -->
+            <div class="dashboard-section products-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-box"></i> Product Management</h3>
+                    <div class="section-actions">
+                        <button class="btn-sm" id="addNewProduct"><i class="fas fa-plus"></i> Add Product</button>
+                    </div>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- Products Overview -->
+                    <div class="product-card overview-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-cubes"></i> Products Overview</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="product-stats">
+                                <div class="product-stat">
+                                    <span class="label">Total Products</span>
+                                    <span class="value" id="totalProducts">12,458</span>
+                                </div>
+                                <div class="product-stat">
+                                    <span class="label">Active Listings</span>
+                                    <span class="value" id="activeProducts">10,245</span>
+                                </div>
+                                <div class="product-stat">
+                                    <span class="label">Low Stock</span>
+                                    <span class="value danger" id="lowStockProducts">245</span>
+                                </div>
+                            </div>
+                            <div class="best-sellers">
+                                <h5>Best Sellers Today</h5>
+                                <div class="best-seller-item">
+                                    <span class="product-name">Wireless Earbuds Pro</span>
+                                    <span class="sales-count">458 sold</span>
+                                </div>
+                                <div class="best-seller-item">
+                                    <span class="product-name">Smart Watch X1</span>
+                                    <span class="sales-count">324 sold</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Graph -->
+                    <div class="product-card graph-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-chart-bar"></i> Product Performance</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="productsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === LIVE MONITORING SECTION === -->
+            <div class="dashboard-section monitoring-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-desktop"></i> Live Monitoring</h3>
+                    <div class="section-actions">
+                        <button class="btn-sm" id="refreshMonitoring"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    </div>
+                </div>
+                
+                <div class="monitoring-grid">
+                    <!-- Live Cart Analytics -->
+                    <div class="monitoring-card carts-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-shopping-cart"></i> Live Cart Analytics</h4>
+                            <span class="card-badge live">Live</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="cart-stats">
+                                <div class="cart-stat">
+                                    <span class="label">Active Carts</span>
+                                    <span class="value" id="activeCarts">1,248</span>
+                                </div>
+                                <div class="cart-stat">
+                                    <span class="label">Products in Carts</span>
+                                    <span class="value" id="cartProducts">5,642</span>
+                                </div>
+                                <div class="cart-stat">
+                                    <span class="label">Cart Value</span>
+                                    <span class="value" id="cartValue">₹24.8L</span>
+                                </div>
+                            </div>
+                            <div class="abandonment-rate">
+                                <span class="label">Abandonment Rate</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 35%"></div>
+                                </div>
+                                <span class="percentage">35%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Website Editor -->
+                    <div class="monitoring-card editor-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-edit"></i> Live Website Editor</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="editor-options">
+                                <button class="btn btn-outline open-overlay" data-overlay="websiteEditorOverlay">
+                                    <i class="fas fa-pencil-alt"></i> Edit Website Content
+                                </button>
+                                <button class="btn btn-outline open-overlay" data-overlay="imageEditorOverlay">
+                                    <i class="fas fa-image"></i> Edit Images & Profiles
+                                </button>
+                            </div>
+                            <div class="recent-edits">
+                                <h5>Recent Edits</h5>
+                                <div class="edit-item">
+                                    <span class="edit-page">Homepage Banner</span>
+                                    <span class="edit-time">10 mins ago</span>
+                                </div>
+                                <div class="edit-item">
+                                    <span class="edit-page">Product Page Text</span>
+                                    <span class="edit-time">25 mins ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error & Bug Tracker -->
+                    <div class="monitoring-card error-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Error & Bug Tracker</h4>
+                            <span class="card-badge danger" id="errorCount">12</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="error-list">
+                                <div class="error-item critical">
+                                    <span class="error-title">Payment Gateway Error</span>
+                                    <span class="error-time">5 minutes ago</span>
+                                </div>
+                                <div class="error-item warning">
+                                    <span class="error-title">Slow Page Load - Homepage</span>
+                                    <span class="error-time">15 minutes ago</span>
+                                </div>
+                                <div class="error-item">
+                                    <span class="error-title">Mobile Responsive Issue</span>
+                                    <span class="error-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="bugTrackerOverlay">
+                                <i class="fas fa-bug"></i> View All Issues
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === STAFF & TEAM MANAGEMENT SECTION === -->
+            <div class="dashboard-section staff-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> Staff & Team Management</h3>
+                </div>
+                
+                <div class="staff-grid">
+                    <!-- New Staff Applications -->
+                    <div class="staff-card applications-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-user-plus"></i> New Staff Applications</h4>
+                            <span class="card-badge" id="staffApplicationsCount">8</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="applications-list">
+                                <div class="application-item">
+                                    <div class="app-details">
+                                        <span class="app-name">Marketing Executive</span>
+                                        <span class="app-date">Today, 11:00 AM</span>
+                                    </div>
+                                    <div class="app-actions">
+                                        <button class="btn-xs"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="staffApplicationsOverlay">
+                                <i class="fas fa-list"></i> View All Applications
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Executive Dashboard Access -->
+                    <div class="staff-card access-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-user-shield"></i> Executive Dashboard Access</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="executive-list">
+                                <button class="executive-btn" data-executive="cto">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>CTO Dashboard</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </button>
+                                <button class="executive-btn" data-executive="coo">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>COO Dashboard</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </button>
+                                <button class="executive-btn" data-executive="cofounder">
+                                    <i class="fas fa-crown"></i>
+                                    <span>Co-founder Dashboard</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </button>
+                                <button class="executive-btn" data-executive="marketing">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <span>Marketing Manager</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === FINANCIAL SYSTEMS SECTION === -->
+            <div class="dashboard-section financial-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-money-check-alt"></i> Financial Systems</h3>
+                </div>
+                
+                <div class="financial-grid">
+                    <!-- Payment Tracking -->
+                    <div class="financial-card payments-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-credit-card"></i> Payment Tracking</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="payment-stats">
+                                <div class="payment-stat">
+                                    <span class="label">Today's Revenue</span>
+                                    <span class="value" id="todayRevenue">₹8.4L</span>
+                                </div>
+                                <div class="payment-stat">
+                                    <span class="label">Pending Payouts</span>
+                                    <span class="value" id="pendingPayouts">₹2.1L</span>
+                                </div>
+                            </div>
+                            <div class="payment-methods">
+                                <div class="method-item">
+                                    <span class="method-name">UPI/BHIM</span>
+                                    <span class="method-amount">₹4.2L</span>
+                                </div>
+                                <div class="method-item">
+                                    <span class="method-name">Credit Card</span>
+                                    <span class="method-amount">₹2.8L</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="paymentTrackingOverlay">
+                                <i class="fas fa-list"></i> View All Payments
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sponsorship Management -->
+                    <div class="financial-card sponsorship-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-handshake"></i> Sponsorship Management</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="sponsorship-list">
+                                <div class="sponsor-item">
+                                    <span class="sponsor-name">Tech Expo 2024</span>
+                                    <span class="sponsor-amount">₹5,00,000</span>
+                                </div>
+                                <div class="sponsor-item">
+                                    <span class="sponsor-name">Sports Event</span>
+                                    <span class="sponsor-amount">₹3,50,000</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline open-overlay" data-overlay="sponsorshipOverlay">
+                                <i class="fas fa-plus"></i> Add Sponsorship
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Auto Calculator -->
+                    <div class="financial-card calculator-card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-calculator"></i> Auto Calculator</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="calculator-display">
+                                <div class="calc-row">
+                                    <span>Profit/Loss</span>
+                                    <span class="calc-value" id="profitLoss">+₹18.4L</span>
+                                </div>
+                                <div class="calc-row">
+                                    <span>Commission Due</span>
+                                    <span class="calc-value" id="commissionDue">₹6.2L</span>
+                                </div>
+                                <div class="calc-row total">
+                                    <span>Net Revenue</span>
+                                    <span class="calc-value" id="netRevenue">₹89.2L</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline" id="runCalculation">
+                                <i class="fas fa-calculator"></i> Run Calculation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === ADVANCED FEATURES SECTION === -->
+        <div class="advanced-section">
+            <h3><i class="fas fa-magic"></i> Advanced Features</h3>
+            <div class="advanced-grid">
+                <button class="advanced-feature" id="predictiveAnalyticsBtn">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Predictive Analytics</span>
+                </button>
+                <button class="advanced-feature" id="aiInsightsBtn">
+                    <i class="fas fa-robot"></i>
+                    <span>AI-Powered Insights</span>
+                </button>
+                <button class="advanced-feature" id="customReportsBtn">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Custom Report Builder</span>
+                </button>
+                <button class="advanced-feature" id="liveNotificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span>Live Notifications</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- === SECURITY LOGS SECTION === -->
+        <div class="security-section">
+            <div class="section-header">
+                <h3><i class="fas fa-shield-alt"></i> Security & Audit Logs</h3>
+            </div>
+            <div class="security-logs">
+                <div class="log-item">
+                    <span class="log-action">CEO Login</span>
+                    <span class="log-time">Today, 09:30 AM</span>
+                    <span class="log-ip">IP: 192.168.1.1</span>
+                </div>
+                <div class="log-item">
+                    <span class="log-action">Dashboard Access</span>
+                    <span class="log-time">Today, 09:35 AM</span>
+                    <span class="log-ip">IP: 192.168.1.1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MESSAGING OVERLAYS ========== -->
+
+    <!-- Team Chat Overlay -->
+    <div class="fullscreen-overlay" id="teamChatOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-users"></i> Internal Team Chat</h2>
+            <button class="btn" id="closeTeamChat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="chat-container">
+                <!-- Chat content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Seller Chat Overlay -->
+    <div class="fullscreen-overlay" id="sellerChatOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-handshake"></i> Seller Communication Hub</h2>
+            <button class="btn" id="closeSellerChat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="seller-chat-container">
+                <!-- Seller chat content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SELLER MANAGEMENT OVERLAYS ========== -->
+
+    <!-- Seller Applications Overlay -->
+    <div class="fullscreen-overlay" id="sellerApplicationsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-file-alt"></i> New Seller Applications</h2>
+            <button class="btn" id="closeSellerApplications"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Applications list -->
+        </div>
+    </div>
+
+    <!-- Seller Details Overlay -->
+    <div class="fullscreen-overlay" id="sellerDetailsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-chart-pie"></i> Seller Performance Details</h2>
+            <button class="btn" id="closeSellerDetails"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Seller performance details -->
+        </div>
+    </div>
+
+    <!-- ========== WEBSITE EDITOR OVERLAY ========== -->
+    <div class="fullscreen-overlay" id="websiteEditorOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-edit"></i> Live Website Editor</h2>
+            <button class="btn" id="closeWebsiteEditor"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="website-editor">
+                <!-- Website editor content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Editor Overlay -->
+    <div class="fullscreen-overlay" id="imageEditorOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-image"></i> Image & Profile Editor</h2>
+            <button class="btn" id="closeImageEditor"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="image-editor">
+                <!-- Image editor content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== BUG TRACKER OVERLAY ========== -->
+    <div class="fullscreen-overlay" id="bugTrackerOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-bug"></i> Error & Bug Tracker</h2>
+            <button class="btn" id="closeBugTracker"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="bug-tracker">
+                <!-- Bug tracking content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== STAFF APPLICATIONS OVERLAY ========== -->
+    <div class="fullscreen-overlay" id="staffApplicationsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-user-plus"></i> New Staff Applications</h2>
+            <button class="btn" id="closeStaffApplications"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Staff applications content -->
+        </div>
+    </div>
+
+    <!-- ========== FINANCIAL OVERLAYS ========== -->
+
+    <!-- Payment Tracking Overlay -->
+    <div class="fullscreen-overlay" id="paymentTrackingOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-credit-card"></i> Payment Tracking System</h2>
+            <button class="btn" id="closePaymentTracking"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Payment tracking content -->
+        </div>
+    </div>
+
+    <!-- Sponsorship Overlay -->
+    <div class="fullscreen-overlay" id="sponsorshipOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-handshake"></i> Sponsorship Management</h2>
+            <button class="btn" id="closeSponsorship"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Sponsorship content -->
+        </div>
+    </div>
+
+    <!-- ========== EXECUTIVE DASHBOARD ACCESS ========== -->
+    
+    <!-- CTO Dashboard View Overlay -->
+    <div class="fullscreen-overlay" id="ctoDashboardOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-laptop-code"></i> CTO Dashboard - Direct Access</h2>
+            <button class="btn" id="closeCtoDashboard"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- CTO Dashboard content -->
+        </div>
+    </div>
+
+    <!-- COO Dashboard View Overlay -->
+    <div class="fullscreen-overlay" id="cooDashboardOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-chart-line"></i> COO Dashboard - Direct Access</h2>
+            <button class="btn" id="closeCooDashboard"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- COO Dashboard content -->
+        </div>
+    </div>
+
+    <!-- Co-founder Dashboard View Overlay -->
+    <div class="fullscreen-overlay" id="cofounderDashboardOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-crown"></i> Co-founder Dashboard - Direct Access</h2>
+            <button class="btn" id="closeCofounderDashboard"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Co-founder Dashboard content -->
+        </div>
+    </div>
+
+    <!-- Marketing Manager Dashboard View Overlay -->
+    <div class="fullscreen-overlay" id="marketingDashboardOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-bullhorn"></i> Marketing Manager Dashboard - Direct Access</h2>
+            <button class="btn" id="closeMarketingDashboard"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Marketing Dashboard content -->
+        </div>
+    </div>
+
+    <!-- ========== ADVANCED FEATURES OVERLAYS ========== -->
+
+    <!-- Predictive Analytics Overlay -->
+    <div class="fullscreen-overlay" id="predictiveAnalyticsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-chart-line"></i> Predictive Analytics</h2>
+            <button class="btn" id="closePredictiveAnalytics"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Predictive analytics content -->
+        </div>
+    </div>
+
+    <!-- AI Insights Overlay -->
+    <div class="fullscreen-overlay" id="aiInsightsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-robot"></i> AI-Powered Insights</h2>
+            <button class="btn" id="closeAiInsights"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- AI insights content -->
+        </div>
+    </div>
+
+    <!-- Custom Reports Overlay -->
+    <div class="fullscreen-overlay" id="customReportsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-file-alt"></i> Custom Report Builder</h2>
+            <button class="btn" id="closeCustomReports"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <!-- Custom reports content -->
+        </div>
+    </div>
+
+    <!-- ========== SECURITY OVERLAY ========== -->
+    <div class="fullscreen-overlay" id="securitySettingsOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+            <button class="btn" id="closeSecuritySettings"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="security-settings">
+                <div class="setting-item">
+                    <h4>Device Management</h4>
+                    <p>Currently active devices: <span id="currentDevices">1/2</span></p>
+                    <button class="btn btn-outline" id="manageDevicesBtn">Manage Devices</button>
+                </div>
+                
+                <div class="setting-item">
+                    <h4>Passkey Settings</h4>
+                    <button class="btn btn-outline" id="changePasskeyBtn">Change Passkey</button>
+                </div>
+                
+                <div class="setting-item">
+                    <h4>Session Logs</h4>
+                    <button class="btn btn-outline" id="viewSessionLogsBtn">View All Logs</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Management Overlay -->
+    <div class="fullscreen-overlay" id="deviceManagementOverlay">
+        <div class="overlay-header">
+            <h2><i class="fas fa-laptop"></i> Device Management</h2>
+            <button class="btn" id="closeDeviceManagement"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overlay-content">
+            <div class="device-list">
+                <!-- Active devices list -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="ceoToast">
+        <i class="fas fa-check-circle"></i>
+        <span id="ceoToastMessage"></span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="ceoLoading">
+        <div class="loading-spinner"></div>
+        <p>Loading CEO Dashboard...</p>
+    </div>
+
+    <script src="ceodashboard.js"></script>
+</body>
+</html>
